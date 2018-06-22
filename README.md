@@ -112,7 +112,90 @@ console.log(cola.recorrerCola());
 
 ### Teoría
 
+**Lista ligada:** Es una de las estructuras de datos básica, puede ser usada para implementar otras estructuras de datos, las listas ligadas son usadas como módulos para otras estructuras de datos. Existen distintos tipos de listas ligadas como son: *listas enlazadas simples, listas doblemente enlazadas, listas enlazadas circulares y listas enlazadas doblemente circulares.*
+ 
+ * Consiste en una secuencia de nodos en los que se guardan campos de datos, los enlaces ó punteros al nodo anterior ó posterior, cada elemento apunta al siguiente. 
+ Su estructura consciste en una lista enlazada de nodos, donde cada nodo tiene un único campo de enlace. Una variable de referencia contiene una referencia al primer nodo, cada nodo (excepto el último) enlaza con el nodo siguiente, y el enlace del último nodo contiene NULL para indicar el final de la lista. Aunque normalmente a la variable de referencia se la suele llamar top, se le podría llamar como se desee. 
+
+* Las listas ligadas permiten inserciones y eliminación de nodos en cualquier punto de la lista en tiempo constante, pero no permiten un acceso aleatorio.
+
 ### Código
+
+```javascript
+// clase lista ligada
+class LinkedList {
+    constructor()
+    {
+        this.head = null;
+        this.size = 0;
+    }
+ 
+    add(element)
+{
+    var node = new Node(element);
+ 
+   // Almacenar el nodo actual
+    var current;
+ 
+    //Si la lista esta vacía añadir elemento, mandarlo a punta
+    if (this.head == null)
+        this.head = node;
+    else {
+        current = this.head;
+ 
+        // Iterar hasta el final de la lista
+        while (current.next) {
+            current = current.next;
+        }
+ 
+        // Agregar nodo
+        current.next = node;
+    }
+    this.size++;
+}
+removeElement(element)
+{
+    var current = this.head;
+    var prev = null;
+ 
+   // Iterar en la lista
+    while (current != null) {
+        // Comparar elemento con elemeto actual
+        // Si se encuentra el elemento eliminarlo
+        if (current.element === element) {
+            if (prev == null) {
+                this.head = current.next;
+            } else {
+                prev.next = current.next;
+            }
+            this.size--;
+            return current.element;
+        }
+        prev = current;
+        current = current.next;
+    }
+    return -1;
+}
+printList()
+{
+    var curr = this.head;
+    var str = "";
+    while (curr) {
+        str += curr.element + " ";
+        curr = curr.next;
+    }
+    console.log(str);
+}
+}
+var ll = new LinkedList();
+ll.add(2);
+ll.add(5);
+ll.add(6);
+ll.printList();
+
+ll.removeElement(2);
+ll.printList();
+```
 
 ## Árbol
 
